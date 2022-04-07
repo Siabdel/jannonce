@@ -7,6 +7,7 @@ import os, datetime
 import pytz
 from pytz import *
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = True
@@ -18,13 +19,13 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'jannoncesdb',                # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'grutil',                # Not used with sqlite3.
-        'HOST': 'localhost',                 # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                          # Set to empty string for default. Not used with sqlite3.
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "jannoncedb", ## os.getenv("DBNAME"),
+        "USER": "postgres", ##os.getenv("DBUSER"),
+        "PASSWORD": "grutil001", ##os.getenv("DBPASSWORD"),
+        "HOST": "localhost", ##os.getenv("DBHOST"),
+        "PORT": '5432', ##os.getenv("DBPORT"),
     }
 }
 
@@ -66,7 +67,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/static/media/'
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -77,6 +78,10 @@ STATIC_ROOT = os.path.join(BASE_DIR,  'static')
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -101,15 +106,15 @@ SECRET_KEY = 'bismiLAHEd83u58i$n-7exsm%tqla)vq9quz2dzfw68jhb@3zf'
 
 # List of callables that know how to import templates from various sources.
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 ROOT_URLCONF = 'jannonces.urls'
 
@@ -125,17 +130,15 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                # necessaire pour module admin login
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
                 #'account.context_processors.account',
                 # `allauth` needs this from django
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
-                'django.template.context_processors.request',
                
             ],
             
@@ -150,8 +153,8 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -197,6 +200,24 @@ LOGGING = {
     }
 }
 
+
+# Password validation
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 #-----------------------------
 # auth and allauth settings
 LOGIN_REDIRECT_URL = '/wejob/list/'

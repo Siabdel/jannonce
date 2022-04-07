@@ -1,6 +1,6 @@
 #! -*- coding:utf-8 -*-
 from django.contrib import admin
-from .models import Annonce, ContentType, Piece, Tache
+from .models import Annonce, ContentType, Piece, Tache, Categorie, TypeContrat
 from django.contrib.auth.models import User
 
 # Annonce
@@ -20,3 +20,5 @@ class TacheAdmin(admin.ModelAdmin):
 # annonce
 admin.site.register(Annonce, AnnonceAdmin)
 admin.site.register(Tache, TacheAdmin)
+admin.site.register(Categorie)
+admin.site.register(TypeContrat)

@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.template.defaultfilters import slugify
 from django.db.models import Q
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse_lazy, reverse
 
 from django.contrib import messages
 # local

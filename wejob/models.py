@@ -2,13 +2,16 @@
 from __future__ import unicode_literals
 import datetime
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from taggit.managers import TaggableManager
+import django
+
+now = django.utils.timezone.now
 
 
 from django.contrib.auth.models import User
@@ -83,9 +86,9 @@ class Annonce(models.Model):
         piece_jointe( libelle, annonce_id, piece)
         
     """
-    owner       = models.ForeignKey(User)
-    categorie   = models.ForeignKey(Categorie)
-    type_contrat = models.ForeignKey(TypeContrat, default=1)
+    owner       = models.ForeignKey(User, on_delete=models.CASCADE)
+    categorie   = models.ForeignKey(Categorie, on_delete=models.CASCADE)
+    type_contrat = models.ForeignKey(TypeContrat, default=1, on_delete=models.CASCADE)
     an_pieces      = GenericRelation(Piece)
     an_slug = models.SlugField(max_length=255, blank=True)
     an_titre       = models.CharField(_('Titre'), max_length = 100)
@@ -111,7 +114,7 @@ class Annonce(models.Model):
     def __unicode__(self):
         return "%s" % (self.an_slug)
     
-    @models.permalink
+    #@models.permalink
     def get_absolute_url(self):
         return ('add_annonce', )
     
@@ -137,7 +140,7 @@ class Tache(models.Model):
         les piéces jointes a cette annnce (annonce_id) 
         piece_jointe( libelle, annonce_id, piece)
     """
-    annonce = models.ForeignKey(Annonce)
+    annonce = models.ForeignKey(Annonce, on_delete=models.CASCADE)
     ta_pieces  = GenericRelation(Piece)
     ta_titre   = models.CharField(max_length = 100)
     ta_close = models.BooleanField(_('Cloturé'), default=False)
@@ -149,7 +152,7 @@ class Tache(models.Model):
     def __unicode__(self):
         return self.ta_titre
     
-    @models.permalink
+    #@models.permalink
     def get_absolute_url(self):
         return (reverse('detail_annonce',  kwargs={'pk': self.ta_annonce.id } ))
     

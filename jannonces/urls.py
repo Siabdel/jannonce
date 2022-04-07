@@ -1,21 +1,17 @@
-from django.conf.urls import  include, url
+from django.conf.urls import url
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-admin.autodiscover()
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'jannonces.views.home', name='home'),
-    # url(r'^jannonces/', include('jannonces.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls), name='admin'), # console admin
-    url(r'^wejob/', include('wejob.urls')),
+    path('admin/', admin.site.urls, name='admin'), # console admin
+    path('wejob/', include('wejob.urls')),
     # module allaccount
-    url(r'^accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

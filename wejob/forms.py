@@ -1,7 +1,6 @@
 # -*- coding:UTF-8 -*-
 from django.forms.utils import ErrorList, ValidationError, ErrorDict
 from django.template.defaultfilters import slugify
-from betterforms.multiform import MultiModelForm, MultiForm, OrderedDict
 from django import forms
 # translate
 from django.utils.translation import ugettext_lazy as _
