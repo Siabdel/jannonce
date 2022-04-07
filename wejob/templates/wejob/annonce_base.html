@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load i18n  staticfiles %}
+{% load account %}
+{% user_display user %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "images/ico/favicon.ico" %}">
+
+ <!--[if lt IE 9]>
+    <script src="{% static "js/html5shiv.js" %}"></script>
+    <script src="{% static "js/respond.min.js" %}"></script>
+    <![endif]-->
+ 
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+   
+<!-- jQuery -->
+<script src="{% static 'js/jquery.js' %}" type="text/javascript" ></script>
+<script src="{% static 'js/jquery-ui.js' %}" type="text/javascript" ></script>
+<script src='{% static "js/moment.js" %}' type='text/javascript'></script>
+<script src='{% static "js/moment-fr.js" %}' type='text/javascript'></script>
+
+<!-- BootStrap -->
+<script src='{% static "bootstrap/js/bootstrap.min.js" %}' 			type='text/javascript'></script>
+<script src='{% static "bootstrap/js/bootstrap-datepicker.js" %}' type='text/javascript'></script>
+
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	 <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}"  />
+	
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"  media="screen" />
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-responsive.css' %}"> 
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.css' %}" >
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-toggle.min.css' %}" >
+	<link rel="stylesheet" href='{% static "bootstrap/css/bootstrap-datepicker.css" %}'>	
+
+
+{% block extra_css %}{% endblock %}
+
+ <!-- Fonts local -->
+<!-- Custom Fonts -->
+<!--<link href="{% static 'fonts/opensans.css' %}"  rel="stylesheet" > -->
+<link href="{% static 'fonts/font-awesome/css/font-awesome.css'  %}"  rel="stylesheet" >
+	 
+	 <!-- Externe Fonts -->
+	 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	 <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	 <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	 <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+	<!-- Externe Fonts -->
+	@font-face {	
+		font-family:font-blackchancery;
+		url("{% static '/fonts/remaching/BLKCHCRY.ttf' %}") format('truetype'),
+    }
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}body{% endblock %}">
+
+<header class="navbar navbar-inverse navbar-fixed-top wet-asphalt" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }} </a>{% endif %}
+								{% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+								
+								<div class="navbar-header page-scroll">
+								<img class="img-circle pull-left" src="/static/images/logo/atlasrdv_ff7a00.jpg" width='55' height='55' />
+								<a class="navbar-brand" href="/wejob/home">Jannonce WEJOB</a>
+								</div>
+								
+								
+            </div>
+            <div class="collapse navbar-collapse">
+               <!-- page_menu "pages/menus/dropdown.html" -->
+                           <!-- Collect the nav links, forms, and other content for toggling -->
+								<ul class="nav navbar-nav navbar-right">
+									<li class="hidden">	<a href="#page-top"></a></li>
+									{% if not user.is_authenticated %}
+									<li> <a class="page-scroll" href="/accounts/logout"><b>Se connecter</b></a></li>	
+										 {{ user }}
+									{% endif %}
+									
+									<li class="dropdown">
+									<a href='#' class="dropdown-toggle" data-toggle="dropdown"> Mon compte <b class='caret'></b></a>
+									<ul class="dropdown-menu"> 
+										<li class='text-center-xs active'><a class="page-scroll" href="/accounts/logout"><b>Espace Client</b></a></li>
+										
+										<li class='active'> 
+											{% if user.is_authenticated %}
+												<a class="page-scroll" href="/accounts/logout"><b>Se déconnecter</b></a>
+											{% endif %}
+										</li>
+									</ul>
+									</li>
+									
+									<li>
+									{% if user.is_authenticated %}
+									<small class='text-center-xs'> Bonjour Mr(Mme) {{ user.last_name}} {{ user.first_name }} </small>
+									{% endif %}
+									</li>
+							</ul>
+            </div>
+        </div>
+</header><!--/header-->
+<br> <br>
+<HR>
+
+<div class="container">
+	 {% if messages %}
+	 <div class="messages">
+	 {% for message in messages %}
+	 <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+			 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			 {{ message }}
+	 </div>
+	 {% endfor %}
+	 </div>
+	 {% endif %}
+</div>
+
+    {% block left_panel %}    {% endblock %}
+   
+<!--- bloc main --->
+<div id="body" class="container-fluid">
+	<section>
+    {% block body %}{% endblock %}
+	</section>
+</div>
+
+<!--- bloc résultats --->
+<section id="resultats" class="container-fluid">
+	<div class="row">
+    {% block resultats %}{% endblock %}
+	</div>
+</section>
+
+<section class="wet-asphalt" id="services">
+	<div class="container">
+	{% block services %}{% endblock %}
+	</div>
+</section>
+
+<footer id="footer" class="midnight-blue">
+	<div class="container-fluid">
+		{% block footer %}{% endblock %}
+		
+	 <div class="row">
+		<div class="col-sm-6">
+			J'ANNONCE wejob theme by <a href="#">ATLASRDV</a>.
+		</div>
+		<div class="col-sm-6">
+				<ul class="pull-right">
+						
+						<li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
+				</ul>
+		</div>
+	 
+	 </div>
+	</div>
+</footer>
+  <!--  <script src="{% static "js/main.js" %}"></script>  -->
+</body>
+</html>

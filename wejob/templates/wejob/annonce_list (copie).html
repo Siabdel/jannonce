@@ -1,0 +1,32 @@
+{% extends "wejob/annonce_base.html" %}
+{% load i18n bootstrap %}
+
+{% block body %}
+
+
+<div class="container">
+<div class='table-responsive'>
+<fieldset><legend> Liste des Projets</legend>
+           <table class='table table-striped'>
+           <thead class='success' ><th>Creer</th><th>Titre</th>
+           <th>Status</th> <th class='info' colspan='4'>Action</th></thead>
+              {% for annonce in object_list %}
+                      <tr>
+                      <td>{{ annonce.published }}</td>
+                      <td>{{ annonce.titre }}</td>
+                      <td><input  class='form-control text-warning' onclick="return false" type='checkbox'
+                      {% if annonce.close %} checked {% endif %}/> </td>
+                       
+                      <th><a href='/wejob/edit/{{ annonce.id }}'><i class="fa fa-pencil-square-o fa-2x" ></i>edit</a></th>
+                      <th><a href='/wejob/del/{{ annonce.id }}'><i class="fa fa-trash fa-2x" ></i>del</a></th>
+                      <th><a href='/wejob/view/{{ annonce.id }}'><i class="fa fa-eye fa-2x" ></i>show</a></th>
+
+                      </tr>
+                {% endfor %}
+           </table>
+</fieldset>
+</div>
+<th><a href='/wejob/add/' class='btn btn-success btn-lg'>Ajouter un projet </a></th>
+</div>
+ 
+{% endblock %}

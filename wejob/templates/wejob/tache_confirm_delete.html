@@ -1,0 +1,23 @@
+{% extends "wejob/annonce_base.html" %}
+{% load i18n bootstrap %}
+
+{% block body %}
+<div class="container">        
+        <div class="row">
+            <h1>{% trans "Delete" %}</h1>
+            {% trans "Are you sure that you really want to delete it?" %}
+            
+  <a href="{% url "list_annonces" %}">No, cancel.</a>
+
+            <form class='form-horizontal' action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-5">
+                        <input type="submit" value="Yes, delete." class='btn btn-default btn-lg' />
+                        <input type="hidden" name="success_url" value="/wejob/list" >
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+{% endblock %}

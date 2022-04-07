@@ -1,0 +1,114 @@
+ <!-- extends load -->
+{% extends "wejob/annonce_base.html" %}
+{% load  bootstrap %}
+{% load i18n account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="row">
+    <div class='alert text-center'>
+      <h4 class="section-heading">{% trans "Sign Up" %}  {% trans "Signup" %}</h4>
+      <h5 class="section-subheading text-center"> 
+      {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+      </h5>
+    </div>
+    
+    <form class="form-horizontal" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      <span class='text-warning'> {{ form.Medecin.non_field_errors }}</span>
+      <!-- form-->
+      <div class="form-group">
+         
+        <label class="col-xs-3 control-label">{{ form.genre.label }} {{ form.genre.errors }}</label>
+        <div class="col-xs-4">
+            {{ form.genre }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        
+        <label class="col-xs-3 control-label"> {{ form.first_name.label}}</label>
+        <div class="col-xs-4">
+          <span class="text-warning">{{ form.first_name.errors }}</span>
+            {{ form.first_name}}
+        </div>
+        <div class="col-xs-4">
+          <span class="text-warning">{{ form.last_name.errors }}</span>
+             {{ form.last_name }}
+        </div>
+      </div>
+      
+      <div class="form-group">
+        
+        <label class="col-xs-3 control-label">{{ form.email.label }}</label>
+        <div class="col-xs-4">
+          <span class="text-info">{{ form.email.errors }}</span>
+            {{ form.email }}
+        </div>
+      </div>
+      
+    <div class="form-group">
+      
+      <label class="col-xs-3 control-label">{{ form.telephone.label }}</label>
+      <div class="col-xs-5">
+        <span class="text-warning">{{ form.telephone.errors }}</span>
+          {{ form.telephone }}
+      </div>
+    </div>
+    
+    <div class="form-group">
+      
+      <label class="col-xs-3 control-label">{{ form.password1.label }}</label>
+      <div class="col-xs-5">
+        <span class="text-warning">{{ form.password1.errors }}</span>
+          {{ form.password1 }}
+      </div>
+    </div>
+    
+    <div class="form-group">
+      
+      <label class="col-xs-3 control-label">{{ form.password2.label }}</label>
+      <div class="col-xs-5">
+        <span class="text-warning">{{ form.password2.errors }}</span>
+          {{ form.password2 }}
+      </div>
+    </div>
+   
+      
+      {% if redirect_field_value %}
+      <div class="col-xs-4 form-action" >
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      </div>
+      {% endif %}
+    <!-- saisie CAPTCHA --> 
+    <div class="form-group">
+        <label class="col-xs-3 control-label" id="captchaOperation"></label>
+        <div class="col-xs-4">
+            <input type="hidden" class="form-control" name="captcha" />
+        </div>
+    </div>
+    <!-- saisie Signé l'accord  --> 
+    <div class="form-group">
+        <div class="col-xs-6 col-xs-offset-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="agree" value="agree" /> J'accepte les CGU et la Notice d'informations et de consentement de AtlasRDV.
+                </label>
+            </div>
+        </div>
+    </div>
+    
+      <button class='btn btn-success btn-lg' type="submit">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+  </div>
+
+</div>
+
+<script  type='text/javascript'>
+	$('input').addClass("form-control");
+    $('.errorslist').addClass("text-warning");
+</script>
+{% endblock %}

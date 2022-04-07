@@ -1,0 +1,26 @@
+{% extends "wejob/annonce_base.html" %}
+{% load  bootstrap i18n  %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block body %}
+
+<div class='container'>
+  <h3>{% trans "Sign Out" %}</h3>
+  <span class='text-info'>{% trans 'Are you sure you want to sign out?' %} </span>
+  <form method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+      <div class="col-xs-6 form-action" >
+        <button class="btn btn-success center" type="submit">{% trans 'Sign Out' %}</button>
+      </div>
+  </form>
+</div>
+
+<script  type='text/javascript'>
+    $('input').addClass("form-control");
+</script>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+0000000000000000000000000000000000000000 2d2c9da308bb6423e80559958bd721523e2240bd abdel <siaziz58@gmail.com> 1476618604 +0200	commit (initial): init projet jannonce - gestion des annonces offre emploi
+2d2c9da308bb6423e80559958bd721523e2240bd f8c42c19a6b153f14e7aa4707aa1c552579abfbf abdel <siaziz58@gmail.com> 1476619589 +0200	commit: init projet jannonce - gestion des annonces offre emploi
+f8c42c19a6b153f14e7aa4707aa1c552579abfbf 2d3d4ee7ade3e0fae1c8b33735c61a73db58b7a2 abdel <siaziz58@gmail.com> 1476700741 +0200	commit: correction ajout de protection login require pour toute les fonctions et adapter les requetes en base filtré sur l'user connecter
+2d3d4ee7ade3e0fae1c8b33735c61a73db58b7a2 21c6b0cd525a28bb75a9d82809d987482d1242b2 abdel <siaziz58@gmail.com> 1476712283 +0200	commit: ajout de url lien du site source
+21c6b0cd525a28bb75a9d82809d987482d1242b2 b90f4bbbbd9aa8c230e058fcae05aafba866fc1e abdel <siaziz58@gmail.com> 1476778226 +0200	commit: Corrections sur HomeView, la methode post() et models.annonce ajout de AnnonceManager()
+b90f4bbbbd9aa8c230e058fcae05aafba866fc1e c370ba9575f5b8312e2f2528526817922d5fc398 abdel <siaziz58@gmail.com> 1476859479 +0200	commit: corrections erreur send mail de confirmation, lors de l'enregistrement du user
+c370ba9575f5b8312e2f2528526817922d5fc398 f4f38c9952671c3645af5908a0c48a1bd866e10b abdel <siaziz58@gmail.com> 1476860252 +0200	commit: corrections erreur sur le menu se connecter
+f4f38c9952671c3645af5908a0c48a1bd866e10b 6e6e74a5278c300e8fe650ca50f9e00473dc3526 abdel <siaziz58@gmail.com> 1476862006 +0200	commit: ACOUNT_EMAIL_VERIFICATION='none' pour ne pas envoyé mail de confirmation, lors de l'enregistrement du user
+6e6e74a5278c300e8fe650ca50f9e00473dc3526 d4804f1337c5af4b76819072d5657d6e5074e4da abdel <siaziz58@gmail.com> 1477044480 +0200	commit: Corrections tags des annonces, ajout an_clodse ...
+d4804f1337c5af4b76819072d5657d6e5074e4da ecaeb6b5592ea15bb86d7b0dc35f29c4a155b2eb abdel <siaziz58@gmail.com> 1477124824 +0200	commit: corrections bug lors ajout annonce
+ecaeb6b5592ea15bb86d7b0dc35f29c4a155b2eb 1bd8b9a963b7000b221fbf71c9b87c4651db85f9 Abdelaziz <abdel@localhost.localdomain> 1497970942 +0200	commit: ajouter Django REST Framework
+1bd8b9a963b7000b221fbf71c9b87c4651db85f9 22c18d57a9b1539dfbdf60c222aaaabb8960a979 Abdelaziz <abdel@localhost.localdomain> 1499332748 +0200	commit: ajout API tastypie et Django Rest Framework
+22c18d57a9b1539dfbdf60c222aaaabb8960a979 a2d0ca146bc551838add94c8de64eca0b65d30e2 Abdelaziz <abdel@atlass.fr> 1499346834 +0200	commit: correction class StageAquisition() dans fichier lecture_fichier_data
+a2d0ca146bc551838add94c8de64eca0b65d30e2 2d8df3007b5a3516b237ae346863efc059f575a3 Abdelaziz <abdel@atlass.fr> 1499346902 +0200	commit: correction class StageAquisition() dans fichier lecture_fichier_data
+2d8df3007b5a3516b237ae346863efc059f575a3 98ab5cb0fe9da909e5c15dacbc0f5d6d4f88e001 Abdelaziz <abdel58@gmail.com> 1499621227 +0200	commit: suppression de quelques fichiers hors sujets
+98ab5cb0fe9da909e5c15dacbc0f5d6d4f88e001 1be634f9169715f39a6de978d492d3bdf7088dd0 Abdelaziz <abdel58@gmail.com> 1499623013 +0200	commit: add files README LICENSE and setup.py
+1be634f9169715f39a6de978d492d3bdf7088dd0 05e492ce883cccc9564ab42be4ddfa84addfc0d6 Abdelaziz <abdel58@gmail.com> 1502360164 +0200	commit: fix error : IntegrityError: 1062, Duplicate entry 'Bootstrap' for key 'name'
+05e492ce883cccc9564ab42be4ddfa84addfc0d6 3c936d29a57839fe4d191f924001d01b6ad2dba8 Django_hp820 <siabdel58@gmail.com> 1649256793 +0200	commit: corrections apres install dans HP ELite book
+3c936d29a57839fe4d191f924001d01b6ad2dba8 3c936d29a57839fe4d191f924001d01b6ad2dba8 Django_hp820 <siabdel58@gmail.com> 1649330652 +0200	Branch: renamed refs/heads/master to refs/heads/main
+3c936d29a57839fe4d191f924001d01b6ad2dba8 6480e34782a95500638194908cc01318fabab971 Django_hp820 <siabdel58@gmail.com> 1649331700 +0200	commit: add categorie & type de contrat dans admin modif urls.py

@@ -1,0 +1,92 @@
+{% extends "wejob/annonce_base.html" %}
+{% load i18n bootstrap account staticfiles %}
+{% user_display user %}
+
+
+
+{% block body %}
+<br>
+<div class="container">
+	<div id="book"  style="display: none" class='row'>
+		<img  src="/static/images/agenda.jpg" alt="" width="100" height="123">
+	</div>
+
+	<ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a data-toggle="tab" href="#sectionA">Annonce Desc</a></li>
+		<li><a data-toggle="tab" href="#sectionB">Autres Infos</a></li>
+		<li><a data-toggle="tab" href="#sectionC">Pièces jointes</a></li>
+	</ul>
+
+	<form id="id_form_annonce" action="" novalidate="novalidate"
+				method="post" enctype="multipart/form-data" class="form-horizontal" rule='form'>
+	<div class="tab-content">
+		
+			<div id="sectionA" class="tab-pane fade in active">
+				<h3> Ajouter une annonce </h3>
+				<fieldset><legend> Creer une annonce</legend>
+				<label class="text-warning">{{ form.errors }}</label>
+				
+					{% csrf_token   %}
+					{{ form.an_titre | bootstrap_horizontal }}
+					{{ form.categorie | bootstrap_horizontal }}
+					{{ form.an_tags | bootstrap_horizontal }}
+					{{ form.an_published | bootstrap_horizontal }}
+					{{ form.type_contrat | bootstrap_horizontal }}
+					{{ form.an_description | bootstrap_horizontal }}
+					{{ form.an_is_active | bootstrap_horizontal }}
+					{{ form.owner | bootstrap_horizontal }}
+					
+					
+			</div>
+			<div id="sectionB" class="tab-pane fade">
+					<h3>autres infos</h3>
+					{{ form.an_entreprise | bootstrap_horizontal }}
+					{{ form.an_lieu | bootstrap_horizontal }}
+					{{ form.an_salaire | bootstrap_horizontal }}
+					{{ form.an_reponse_employeur | bootstrap_horizontal }}
+					
+			</div>
+			<div id="sectionC" class="tab-pane fade">
+					<h3>autres infos</h3>
+					{{ form.piece | bootstrap_horizontal }}
+					<ul class="list-unstyled" >
+					{% for file in files_attaches  %}
+						<li><a  href="#" ><img src="../site_media/{{ file.fichier }}" class="img-circle pull-left" alt="{{ file.fichier }}" >{{ file.fichier }}</a></li>
+					{% endfor %}
+					</ul>
+			</div>
+	
+		<div class='form-group'>
+			<input class="btn btn-success btn-lg" type='submit' value='Enregistrez'>
+		</div>
+	</div>
+	</form>
+</div>
+
+
+	
+<script  type='text/javascript'>
+	
+	$(document).ready(function() {
+			$.datepicker.setDefaults($.datepicker.regional['fr']);
+			
+			// nom jour jour mois annee
+			$("#id_published").datepicker({
+																			format:'DD/MM/YYYY HH:mm',
+																			prevText: 'Précédent',
+																			nextText: 'Suivant',
+																		}			
+																		);
+			
+			// test
+			$('#id_titre').focus();
+			
+	});
+	
+  $('input').addClass("form-input");
+  $('.errorlist').addClass("text-warning");
+	 // traitement pour avoir un format date en francais pour le message de confirmation
+	
+       
+</script>
+{% endblock %}

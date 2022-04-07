@@ -1,0 +1,39 @@
+{% extends "wejob/annonce_base.html" %}
+
+{% load i18n bootstrap %}
+
+{% block body %}
+
+<label class="control-label">Annonce  {{ annonce.an_titre }} </label>
+
+	
+<h2> Tache </h2>
+<div class="container">
+		<label class="text-warning">{{ form.errors }}</label>
+		<form action="" method="post" class="form-vertical" role='form'>
+						{% csrf_token %}
+
+			<div class="col-xs-12 text-warning">{{ form.field_errors }}</div>
+				{{ form.annonce | bootstrap }}
+				{{ form.ta_titre | bootstrap }}
+
+				{{ form.ta_created  }}
+			<label class="col-xs-3 control-label">Etat</label>
+				{{ form.ta_close | bootstrap }}
+
+				{{ form.ta_description | bootstrap }}
+				{{ form.ta_pieces  }}
+				
+				 <div class="form-actions">
+					<div class="col-xs-12 col-xs-offset-1">
+								<a id="clickme" class="btn btn-lg btn-success" href="#">
+								<i class="fa fa-plus fa-2x pull-left"></i>..</a>
+								
+								<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+								<input onclick="window.history.back();" type="cancel" class="btn btn-primary" name="cancel" value="Cancel" />
+					</div>
+				</div>
+
+		</form>
+</div>
+{% endblock %}

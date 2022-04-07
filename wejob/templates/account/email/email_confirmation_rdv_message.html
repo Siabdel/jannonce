@@ -1,0 +1,76 @@
+{% load account %}
+{% load i18n %}
+{% autoescape off %}
+
+{% block content %}
+<html lang="fr">
+<body>
+<style>
+		.content{
+			background-color: #ee4;
+			color:blue;
+		}
+		h2{
+			color:red;
+		}
+</style>
+	
+<div class='content'>
+<h1>AtlasRdv</h1>	 		
+
+<h2>Votre rendez-vous a été confirmé</h2>.
+
+<p>Bonjour {{ nom_patient }},<br>    <br><br>
+
+Votre rendez-vous avec {{ nom_medecin }} est confirmé !<br>
+<br><br>
+Le praticien vous attend le {{ date_rdv }}h.<br>
+Si vous avez un empêchement, pensez à prévenir le praticien ou à annuler au moins 24h avant.<br>
+
+<br><br><br>
+le {{ date_rdv }}h<br>
+Pour : {{ nom_patient }}<br>
+
+Dr  {{ nom_medecin }}     <br>
+ {{ specialite }}<br>
+
+{{ adresse }}<br>
+
+<h2>Quelques conseils</h2><br>
+
+<blockquote>
+Votre praticien vous attend pas besoin de l’appeler pour confirmer
+Soyez ponctuel ! Si vous pensez avoir du retard, prévenez au plus vite votre praticien.
+Pensez à vous munir de vos documents de santé (carte vitale, examens ou radios…)
+Mode de règlement
+
+Accepte le paiement par carte de crédit
+	 		
+</blockquote> 	
+<a href='http://www.atlasrdv/prise/rendezvous/espace_client/' >Mon Espace Personnel</a>
+<a href='http://www.atlasrdv/prise/rendezvous/annule_rdv/' >Annuler ce RDV</a>
+ 		
+ 	 	 		
+ 	
+Un problème ? Une question ? Appelez-nous au 06 62 87 03 12 ou<br>
+contactez-nous par mail : assistance@atlasrdv.fr     <br>
+
+
+ 	
+Vous disposez d’un droit d’accès, de rectification et de suppression de données vous concernant<br>
+(art. 38,39 et 40 de la loi Informatique et libertés modifiée du 6 juillet 1978).<br>
+Pour l’exercer, adressez-vous à : Atlas Rendez-vous - Service Assistance -
+
+Atlas Rendez-vous est un service proposé par Atlasoft
+
+7 Rue Robert et Reynier
+69190 Saint-Fons
+www.atlasrdv.fr
+France
+
+</p>
+</div>
+</body>
+</html>
+{% endblock %}
+{% endautoescape %}

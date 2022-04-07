@@ -1,0 +1,39 @@
+{% extends "wejob/annonce_base.html" %}
+{% load i18n bootstrap %}
+
+{% block body %}
+
+<div class="container">
+<h3> Détail Annonce </h3>
+
+
+<div class="panel panel-primary margin-top-10">
+           <div class="panel-heading">
+               <h3 class="panel-title">Project {{ object.annonce.an_titre }}</h3>
+           </div>
+</div>
+
+<div class='table-responsive'>
+<fieldset><legend>creer le {{ object.created }} </legend>
+           <thead class='success' >Edit Tache	 </thead>
+                      <p>{{ object.published |date:"d M Y"}}</p>
+                      <p>{{ object.ta_titre }}</p>
+											<p>{{ object.ta_description }}</p>
+										
+                      {% if task.ta_close %}
+                        <p>cloturé</p>
+												{% else %}
+												 <p>ouvert</p>
+                      {% endif %}
+     
+</fieldset>
+</div>
+
+<th><a href='/wejob/view/{{ object.annonce.id }}' class='btn btn-default btn-lg'>Retour la liste </a></th>
+<th><a href='/wejob/tache/add/{{ object.pk }} ' class='btn btn-success btn-lg'>Ajouter une tache </a></th>
+</div>
+
+<script language="javascript">
+	$("id_published").datepicker();
+</script>
+{% endblock %}

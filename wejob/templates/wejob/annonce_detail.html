@@ -1,0 +1,74 @@
+{% extends "wejob/annonce_base.html" %}
+{% load i18n bootstrap %}
+
+{% block body %}
+
+<div class="container">
+<h3> Détail Annonce </h3>
+
+
+<div class="panel panel-primary margin-top-10">
+           <div class="panel-heading">
+               <h3 class="panel-title">Project {{ object.titre }}</h3>
+           </div>
+</div>
+
+<div class='table-responsive'>
+<fieldset><legend>creer le {{ object.created }} </legend>
+         
+           <thead class='success' ><th>Creer</th> <th>date d'écheance</th><th>Titre</th>
+           <th>Terminé</th> <th class='info' colspan='3'>Action</th></thead>
+                       <tr>
+                      <p>{{ object.published |date:"d M Y"}}</p>
+                      <p>{{ object.an_titre }}</p>
+											<p>{{ object.an_description }}</p>
+											<p>{{ object.an_entreprise }}</p>
+											<p>{{ object.an_salaire }}</p>
+                      <p>{{ object.an_reponse }}</p>
+											<p>{{ object.an_lieu }}</p>
+											<p>{{ object.type_contrat.libelle }}</td>
+                      {% if task.an_close %}
+                        <p>cloturé</td>         
+                      {% endif %}
+
+                      
+</fieldset>
+</div>
+<th><a href='/wejob/home/' class='btn btn-default btn-lg'>Retour la liste </a></th>
+
+</div>
+
+<div class='table-responsive'>
+<fieldset><legend>creer le {{ object.created }} </legend>
+           <table class='table table-striped'>
+           <thead class='success' ><th>Creer</th> <th>titre</th><th>Comment</th>
+           <th>Terminé</th> <th>Pieces</th><th class='info' colspan='3'>Action</th></thead>
+           {% for tache in object.tache_set.all %}
+                      <tr>
+                      <td>{{ tache.ta_created }}</td>
+                      <td>{{ tache.ta_titre }}</td>
+                      
+											<td>{{ tache.ta_description }}</td>
+											
+											<td>{{ tache.ta_close }}</td>
+											<td>{{ tache.ta_piece }}</td>
+                      <td><input  class='form-control text-warning' onclick="return false"   type='checkbox'  {% if task.close %} checked {% endif %}' /> </td>
+                       
+                      <th><a href='/wejob/tache/edit/{{ tache.id }}'><i class="fa fa-pencil-square-o fa-2x" ></i></a></th>
+                      <th><a href='/wejob/tache/del/{{ tache.id }}'><i class="fa fa-trash fa-2x" ></i></a></th>
+                      
+                      <th><a href='/wejob/tache/show/{{ tache.id }}'><i class="fa fa-eye fa-2x" ></i></a></th>
+
+                      </tr>
+           {% endfor %}
+           </table>
+</fieldset>
+</div>
+<th><a href='/wejob/tache/add/{{ object.pk }} ' class='btn btn-success btn-lg'>Ajouter une tache </a></th>
+
+</div>
+
+<script language="javascript">
+	$("id_published").datepicker();
+</script>
+{% endblock %}

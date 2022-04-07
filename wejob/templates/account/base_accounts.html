@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Atals Rendez-vous</title>
+		{% load i18n staticfiles  %}	
+		
+				
+		<!-- bootstrap -->
+		<link rel="stylesheet" href="{% static 'bootstrap/dist-3.3.5/css/bootstrap.css' %}" type="text/css" media="screen" />
+			<!-- Agence -->
+		<link href="{% static 'css/orange-agency.css'  %}" rel="stylesheet">
+			<!-- mon style -->
+		<link href="{% static 'css/atlasrdv-orange.css'  %}" rel="stylesheet">
+		
+
+		<!-- Custom Theme JavaScript -->
+		
+		<!-- Fonts local -->
+		<link href="{% static 'fonts/font-awesome/css/font-awesome.css'  %}"  rel="stylesheet" >
+
+		<!-- Externe Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+		<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<!-- jQuery -->
+    <script type="text/javascript"  src="{% static 'jquery/js/jquery-2.1.4.min.js' %}"></script>
+    <!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'bootstrap/dist-3.3.5/js/bootstrap.min.js' %}"></script>
+    <!-- Custom Theme JavaScript -->
+	<script src="{% static 'agence/js/agency.js' %}"></script>
+</HEAD>
+
+<body id="page-top" class="index">
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll navbar-plus">
+				<img class="img-circle pull-left" src="/static/images/agenda.jpg" width='45' height='55' />
+				<a class="navbar-brand" href="/prise/home_patient/">Atlas Rendez-vous</a>
+				{% if user.is_authenticated %}
+					<b class="text-info">Bonjour Mr(Mme) {{ user.last_name}} {{ user.first_name }}</b>
+				{% endif %}
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li> 
+						{% if user.is_authenticated %}
+							<a class="page-scroll" href="/accounts/logout"><b>Se déconnecter</b></a>
+						{% endif %}
+					</li>
+					<li><a class="page-scroll" href="/prise/rendezvous/espace_client/"><b>Espace Patient</b></a></li>
+					<li><a class="page-scroll" href="/prise/admin/accueil"><b>Espace Praticien</b></a></li>
+					<li><a class="page-scroll" href="/prise/commander/forfait/">Medecin Rejoinez-nous</a></li>
+				</ul>
+            </div>
+			<!---- Bloc Message infos --->
+				{% if messages %}
+				<ul class="messages">
+				{% for message in messages %}
+				<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+				{% endfor %}
+				</ul>
+				{% endif %}
+			<!---- End Bloc Message infos --->
+            <!-- /.navbar-collapse -->
+        <!-- /.container-fluid -->
+
+	</div>
+</nav>
+
+<section class='container'>
+ {% block content %}     {% endblock %}
+</section>
+               
+<!-- section footer -->
+<footer id="footer" class="row">
+	<div class="col-sm-4">copyright 1015-2016</div>
+	<div class="col-sm-4">Nous contacter </div>
+	<div class="col-sm-4">À propos de nous</div>
+</footer>
+
+
+</BODY>
+</HTML>

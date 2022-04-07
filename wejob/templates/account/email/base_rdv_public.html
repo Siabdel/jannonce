@@ -1,0 +1,128 @@
+<html lang="fr">
+<head>
+<title>{% block title %} Agenda Booking 2015{% endblock%}</title>
+{% load i18n staticfiles  %}
+	<link rel="icon" href="{% static '/pictures/favicon.ico' %}">
+	
+	<!-- bootstrap -->	
+	<link rel="stylesheet" href="{% static 'bootstrap/dist-3.3.5/css/bootstrap.css' %}"  media="screen" />
+	<!-- <link rel="stylesheet" href="{% static 'bootstrap/dist-3.3.5/css/bootstrap-responsive.css' %}">  -->
+	<link rel="stylesheet" href="{% static 'schedule.css' %}" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{% static 'bootstrap/dist-3.3.5/css/bootstrap-theme.css' %}" >
+	<link rel="stylesheet" href="{% static 'bootstrap/dist-3.3.5/css/bootstrap-toggle.min.css' %}" >
+	<link rel="stylesheet" href='{% static "bootstrap/dist-3.3.5/css/bootstrap-datepicker.css" %}'>	
+	
+	<!-- Agence -->
+	<link href="{% static 'css/orange-agency.css'  %}" rel="stylesheet">
+	<!-- mon style -->
+	<link href="{% static 'css/atlasrdv-orange.css'  %}" rel="stylesheet">
+	<!-- Custom Theme JavaScript -->
+
+	<!-- Custom Fonts -->
+	<link href="{% static 'fonts/opensans.css' %}"  rel="stylesheet" >
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.css'  %}"  rel="stylesheet" >
+	<!-- Externe Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+	
+	<!-- JQUERY -->
+	<link rel="stylesheet" href="{% static 'jquery/css/jquery-ui.css' %}"  />
+	<!-- FULLCALENDAR-->				
+	<link rel='stylesheet' href="{% static 'fullcalendar/dist-2.4.0/fullcalendar.print.css' %}"  media='print' />   
+	<link rel='stylesheet' href="{% static 'fullcalendar/dist-2.4.0/fullcalendar.min.css' %}"/>
+	
+	<script type="text/javascript"  src="{% static 'jquery/js/jquery-2.1.4.min.js' %}"></script>
+	<script type="text/javascript"  src="{% static 'jquery/js/jquery-ui.js' %}" ></script>
+	<script type='text/javascript'  src="{% static 'jquery/js/moment.js' %}"></script>
+	
+	<script  type="text/javascript" src="{% static 'bootstrap/dist-3.3.5/js/bootstrap-toggle.min.js' %}"></script> 
+	<script src="{% static 'js/upload/jquery.cookie.js' %}"></script>
+	
+	
+	<!-- bootstrap -->
+	<script type="text/javascript" src="{% static 'bootstrap/dist-3.3.5/js/bootstrap.min.js' %}"></script>
+	<!--<script type='text/javascript' src='{% static "bootstrap/dist-3.3.5/js/bootstrap-datepicker.js" %}'></script> -->
+	<!-- Diary  -->
+	<link href="/static/css/datetimepicker.css" type="text/css" media="all" rel="stylesheet" />
+	<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+	<!-- end Diary -->
+	
+	<!-- FULLCALENDAR-->				
+	<script type='text/javascript' src="{% static 'fullcalendar/dist-2.4.0/fullcalendar.js' %}"></script>
+	<script type='text/javascript' src="{% static 'fullcalendar/dist-2.4.0/lang-all.js' %}"></script>
+    <script  type="text/javascript" src="{% static 'fullcalendar/dist-2.4.0/lib/jquery-ui.custom.min.js' %}" ></script>
+	
+</head>
+
+<body  id="body" class="container-fluid">
+    <header class="row">
+       <div id="messages" >
+            {% if messages %}
+            <ul class="messages" >
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+		    <span style="font-size:17px; color:#CC2211">		    
+		    {{ message }}
+		    </span></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        
+            {% if form.errors %}
+                <p>vous avez des erreurs dans votre saisie. réessayer encore.</p>
+            {% endif %}
+            {% if not user %}
+                <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+            {% endif %}
+        </div>
+    </header>
+	
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div>
+			<img class="img-rounded pull-left" src="/static/images/logo/atlasrdv_ff7a00.jpg" width='55' height='55' />
+			<span class="label"><a class="navbar-brand" href="/prise/home_patient/">
+			ATLAS Rendez-vous</a></span>
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				{% if user.is_authenticated %}
+				<li><a style='color:#fff'>Bonjour Mr(Mme) {{ user.last_name }} {{ user.first_name }}</a></li>
+				{% endif %}	
+			
+				<li><a href="/kaftan/contact"><b>Contact</b></a></li>
+				<li>
+					{% if user.is_authenticated %}
+					<a href="/accounts/logout"><b> se déconnecter </b></a>
+					{% endif %}
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+					   data-toggle="dropdown" >Services<b class="caret" ></b></a>
+					<ul class="dropdown-menu" >
+						<li class="active"><a href="#" >Creer un agenda</a></li>
+						<li> <a href="#" >Saisir des absences</a></li>
+					</ul>
+				</li>
+				<li><a href="#">{% trans 'About' %}</a></li>
+				
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
+	<!-- /.container -->
+	
+</nav>
+
+ 
+<!---- Bloc Body --->
+<section>
+	{% block content %}{% endblock %}
+</section>
+
+</body>
+</html>

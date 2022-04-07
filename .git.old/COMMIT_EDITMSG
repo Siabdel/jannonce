@@ -1,0 +1,26 @@
+add .gitignore ...
+
+# Veuillez saisir le message de validation pour vos modifications. Les lignes
+# commençant par '#' seront ignorées, et un message vide abandonne la validation.
+#
+# Date :       Thu Apr 7 14:37:02 2022 +0200
+#
+# rebasage interactif en cours ; sur b357143
+# Dernières commandes effectuées (3 commandes effectuées) :
+#    pick f8c42c1 init projet jannonce - gestion des annonces offre emploi
+#    pick 2d3d4ee correction ajout de protection login require  pour toute les fonctions et adapter les requetes en base filtré sur l'user connecter
+# Prochaines commandes à effectuer (16 commandes restantes) :
+#    pick 21c6b0c ajout de url lien du site source
+#    pick b90f4bb Corrections sur HomeView, la methode post() et models.annonce ajout de AnnonceManager()
+# Vous êtes actuellement en train d'éditer un commit pendant un rebasage de la branche 'main' sur 'b357143'.
+#
+# Modifications qui seront validées :
+#	modifié :         .gitignore
+#	modifié :         fabric_prod.py
+#	nouveau fichier : fixtures.json
+#	nouveau fichier : requires.txt
+#	nouveau fichier : toto
+#	modifié :         wejob/models.py
+#	modifié :         wejob/templates/wejob/annonce_base.html
+#	modifié :         wejob/views.py
+#
