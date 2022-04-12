@@ -4,11 +4,11 @@ services:
 
   web:
     build: .
-    container_name: markoblog_web
-    # command: gunicorn markoblog.wsgi:application --bind 0.0.0.0:8000
-    command: pwd && bash ./entrypoint.sh
+    container_name: jannonce_web
+    command: gunicorn jannonce.wsgi:application --bind 0.0.0.0:8000
+    # command: pwd && bash ./entrypoint.sh
     volumes:
-      - ./app:/code/markoblog
+      - ./app:/app/jannonce
     ports:
       - "8000:8000"
     env_file:
@@ -18,19 +18,19 @@ services:
 
   db:
     image: postgres
-    container_name: markoblog_db
+    container_name: jannonce_db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_DB=markoblogdb
+      - POSTGRES_DB=jannoncedb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=grutil001
 
   nginx:
     build: ./nginx
-    container_name: markoblog_nginx
+    container_name: jannonce_nginx
     volumes:
-      - staticfiles:/markoblog/static/
+      - staticfiles:/jannonce/static/
     ports:
       - 1338:80
     depends_on:
